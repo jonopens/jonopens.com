@@ -1,36 +1,14 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "About Me"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+So I'm Jon. I'm a developer. I used to work at CARFAX, Pager, MikMak, Walmart Global Tech and Store No. 8.
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+  <img src="/not-a-bad-lookin-fella.jpg" alt="It's-a me, Jonny O!">
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+After years of tinkering with Bash scripts and Python, I decided to pivot to software engineering in 2017. I applied to the Immersive Web Development program at Flatiron School and was accepted. I graduated at the end of 2017.
 
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+I’m also an SEO with over 15 years of experience. I’ve managed the SEO programs at XO Group, Inc. (formerly The Knot) and 1stdibs.com. My specialties are strategic SEO, particularly technical and content SEO, for startups and early growth stage companies. Please email me < @ > jonopens.com if you want to talk.
 
-## Tech Stack
-
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
-
-## Features
-
-Here are certain features of this site.
-
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+In my spare time, I like to play guitar (poorly), rock climb, run, play video games and all sorts of other things. Nice to meet ya!
