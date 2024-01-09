@@ -132,3 +132,9 @@ function ticker() {
 ```
 
 Here we write another function, our ticker, which will update the x and y coordinates of our circles as the simulation is run. And that's it! Thanks for stopping by :)
+
+## Follow Up: January 9, 2024
+
+It's worth noting that D3 pulled out `d3.queue` into its own repo around version 5 (it's up to 7.8.5 right now!) because it has alternate means of handling async work like loading a CSV -`d3.csv` - or using a timer.
+
+I've been moving the site here from Jekyll to Astro recently and figured it's worth sharing that this isn't the way I'd make the bubble chart anymore. I'll add a little more content here soon to flesh out how this could work with the D3 in 2024.
