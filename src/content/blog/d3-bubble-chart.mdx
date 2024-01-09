@@ -12,7 +12,11 @@ description: Quick guide on getting a simple bubble chart set up in D3.js.
 
 ## Contents
 
-<img src="https://media.giphy.com/media/i6X9HbM4bhJ8Q/giphy.gif" alt="Data the android doing weird stuff" width="500px">
+<img
+  src="https://media.giphy.com/media/i6X9HbM4bhJ8Q/giphy.gif"
+  alt="Data the android doing weird stuff"
+  width="500px"
+/>
 
 I've been hearing about the visualization library called D3 since before I even knew anything about JavaScript beyond simple DOM manipulation in JQuery. That's because I've done a lot of work around drawing conclusions from data for years during my time as an SEO. It's obvious to say, but making sense of your data is absolutely essential. On the flip side, what does that data matter if it can't communicate and be understood? D3, which stands for Data-Driven Documents, can help our data find its voice.
 
@@ -75,7 +79,7 @@ let simulation = d3
 
 As you can see in the comments above, `radiusScale` defines the rules we use to display circles/bubbles by telling it what our min and max values ARE in our data and what they SHOULD BE on the page. Simulation takes a bit more explaining, really more than I can provide, but the short answer is that it's an object that D3 creates that has a bunch of functions we can use later. Neato. Here's what it looks like if we console.log it out...
 
-![console.log of D3 simulation object](/images/console-log-simulation-object.png "D3 simulation object in JS console")
+![console.log of D3 simulation object](.../assets/images/console-log-simulation-object.png "D3 simulation object in JS console")
 
 More broadly, the simulation object is going to simulate forces acting on our bubbles. You can see in each of the `.force` lines, we give a name and then we tell the code what kind of force we want to simulate. We have three here:
 
