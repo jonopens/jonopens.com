@@ -6,7 +6,7 @@ export const SITE: Site = {
   desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
   title: "Jon Openshaw",
   lightAndDarkMode: true,
-  postPerPage: 3,
+  postPerPage: 10,
 };
 
 export const sitemapBlacklist = ["/tags/", "/search/"];
