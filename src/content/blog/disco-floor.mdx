@@ -10,6 +10,8 @@ tags:
 description: "At the end of last year, I had the idea to make a Disco Floor making app. I finally got around to completing the first version. It's missing a lot but I've enjoyed it a ton and wanted to pull some thoughts together on it."
 ---
 
+import shuffle from "@assets/images/overhand-shuffle.gif";
+
 I've been doing software development as a frontend engineer for CARFAX's Used Car Listings product for almost a year now. In large part, I didn't want to pick up new projects so I could focus on growing into my new career, and it's been a fantastic first (almost) year! However, near the end of 2018, I started getting the itch for a new project and was feeling more comfortable at work, so I started wondering about another project. Something silly and fun, ideally!
 
 <iframe
@@ -81,7 +83,7 @@ const exampleTile = {
 };
 ```
 
-Additionally, I wanted to hand-write a few patterns to use as seed data for users to play with. It ended up being pretty **frustrating** and **time-consuming** to write as they got more complex and longer; I needed an abstraction to make it easier to write them from scratch (and is it turned out later, change them). A [reference object](https://github.com/jonopens/disco-floor/blob/master/src/data/reference.js) (<== links to Github reference file) with a limited number of tiles (20) helped simplify things.
+Additionally, I wanted to hand-write a few patterns to use as seed data for users to play with. It ended up being pretty **frustrating** and **time-consuming** to write as they got more complex and longer; I needed an abstraction to make it easier to write them from scratch (and is it turned out later, change them). A [reference object](https://github.com/jonopens/disco-floor/blob/master/src/data/reference.js) (links to Github reference file) with a limited number of tiles (20) helped simplify things.
 
 So with the reference, the patterns look something like...
 
@@ -134,7 +136,10 @@ My gut tells me that I could have planned for this if I'd thought about it more.
 
 ### Would It Be Faster to Pre-render All Frames and Change z-index?
 
-<img src="/images/overhand-shuffle.gif" alt="best z-index swap analogy I could think of - the overhand shuffle">
+<img
+  src={shuffle.src}
+  alt="best z-index swap analogy I could think of - the overhand shuffle"
+/>
 
 I haven't built out a proof of concept to know if this is true, but I'm putting it here from my own curiosity: would I be able to make silly faster player speeds like 8x and 16x if I lazily pre-rendered all the frames and simply swapped the z-indices out?
 
@@ -159,10 +164,11 @@ I initially started this project on a whim to learn some basic Webpack. It's bee
 
 Thanks for reading!
 
-<!--
-  later updates
-  - mobile experience exists and is good
-  - row, column, diagonal toggle
-  - color selector
-  - "fresh start" frame (current) vs. last frame frame
--->
+{/\*
+later updates
+
+- mobile experience exists and is good
+- row, column, diagonal toggle
+- color selector
+- "fresh start" frame (current) vs. last frame frame
+  \*/}

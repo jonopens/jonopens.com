@@ -12,13 +12,19 @@ description: After an unexpected reintroduction to the Monty Hall Problem, I try
 
 You probably didn't know, but I love video games, and it's one of the reasons I decided to learn to program in the first place. It should come as no surprise that I consume just about anything related to games - videos, articles, disappointment in endless cycles of ports of old games to new platforms. Interestingly, it was during a YouTube video of a guy who goes by CarlSagan42 that I was reintroduced to the Monty Hall Problem - in this case, in the form of a [Super Mario Maker level](https://www.youtube.com/watch?v=otDNr4kSnAs) - and became curious on how I could demonstrate it with code.
 
-<img src="https://i.chzbgr.com/full/7125393920/h307E1165/" alt="goats, my dude" style="text-align: center">
+<img
+  src="https://i.chzbgr.com/full/7125393920/h307E1165/"
+  alt="goats, my dude"
+/>
 
 ## Who is Monty Hall and What is His Problem?
 
 For a little background to set the stage, Monty Hall was the host of a TV show called "Let's Make a Deal" that started out in the 60's and end its first run in the 80's (it has had several other iterations since). In the show, contestants would have to make a deal with the host, Monty Hall, usually trading some kind of prize for another prize of unknown value. One of those games forms the basis of what we know as "the Monty Hall Problem".
 
-<img src="http://static.tvtropes.org/pmwiki/pub/images/Lets_Make_A_Deal_3048.gif" alt="Let's Make a Deal w. Monty Hall" style="text-align: center">
+<img
+  src="http://static.tvtropes.org/pmwiki/pub/images/Lets_Make_A_Deal_3048.gif"
+  alt="Let's Make a Deal w. Monty Hall"
+/>
 
 The particular game in question, The Big Deal, revolves around 3 doors, each of which has a prize behind it. Two of the contestants that had won during the main show would have the opportunity to give up the prizes they won for a chance to open one of the doors and receiving the prize behind it, so it was a game of chance where you might end up with a prize worth less than what you gave up.
 
@@ -121,44 +127,3 @@ I know there are things I can improve about the code I wrote that can be improve
 Additionally, the two conditional blocks make me feel like there's a more elegant way to accomplish the same thing. I'll look at how others have solved this problem to get a sense of whether or not that's true, but it feels like a case of code smell.
 
 Feel free to test out the above code in the console (it's included in this page) or tweet me with thoughts on what I wrote. Thanks for reading!
-
-<script>
-  const results = {
-    wonGames: 0,
-    lostGames: 0
-  }
-
-  const chooseDoor = (n) => {
-    return Math.floor(Math.random() * n);
-  }
-
-  const runMontyHallProblemTests = (n) => {
-    for(var i = 0; i < n; i++){
-      // assign first choice, winner and door switch choices
-      let initialChoiceDoor = chooseDoor(3),
-          winnerDoor        = chooseDoor(3),
-          remainingDoors    = [0,1,2].filter(
-            (d) => d !== initialChoiceDoor
-          );
-
-      // remove a 'goat' door from switch choices
-      if(remainingDoors[0] === winnerDoor){
-        remainingDoors.pop();
-      } else {
-        remainingDoors.shift();
-      }
-
-      // increment the winner or loser
-      if(remainingDoors[0] === winnerDoor){
-        results.wonGames++;
-      } else {
-        results.lostGames++;
-      }
-    }
-
-    // after for loop completes, log the results
-    console.log(
-      `${results.wonGames / (results.wonGames + results.lostGames) * 100}% of switches resulted in wins. ${results.lostGames / (results.wonGames + results.lostGames) * 100}% resulted in losses.`
-    )
-  }
-</script>

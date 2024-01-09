@@ -10,6 +10,8 @@ tags:
 description: Quick guide on getting a simple bubble chart set up in D3.js.
 ---
 
+import consoleImg from "@assets/images/console-log-simulation-object.png";
+
 ## Contents
 
 <img
@@ -79,7 +81,7 @@ let simulation = d3
 
 As you can see in the comments above, `radiusScale` defines the rules we use to display circles/bubbles by telling it what our min and max values ARE in our data and what they SHOULD BE on the page. Simulation takes a bit more explaining, really more than I can provide, but the short answer is that it's an object that D3 creates that has a bunch of functions we can use later. Neato. Here's what it looks like if we console.log it out...
 
-![console.log of D3 simulation object](.../assets/images/console-log-simulation-object.png "D3 simulation object in JS console")
+<img src={consoleImg.src} alt="D3 simulation object in JS console" />
 
 More broadly, the simulation object is going to simulate forces acting on our bubbles. You can see in each of the `.force` lines, we give a name and then we tell the code what kind of force we want to simulate. We have three here:
 

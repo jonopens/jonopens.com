@@ -19,7 +19,11 @@ It was going well and I was getting back objects from a [fun dog API](https://do
 
 As the name suggests, the purpose of mutation observers is, well, to observe. Specifically, DOM elements. And look for mutations. In the DOM elements.
 
-<img src="https://i.pinimg.com/originals/87/6a/2c/876a2cf1cb3ad7547429f031ad493f17.jpg" alt="i am shocked and i want details" width="500">
+<img
+  src="https://i.pinimg.com/originals/87/6a/2c/876a2cf1cb3ad7547429f031ad493f17.jpg"
+  alt="i am shocked and i want details"
+  width="500"
+/>
 
 More specifically, it's a built-in object type that's intended to handle changes performed on the DOM. When an element under observation changes in the DOM, a new MutationRecord is created which carries with it data about the nature of that change. In practice, I only used it to get information on what had been changed via console log.
 
@@ -86,8 +90,3 @@ One other important factor reported in [this post on the Opera dev blog](https:/
 ## MutationObserver is Neat-o, but May Not Be Great for Large Applications
 
 Last thing I wanted to talk about, particularly in the context I mentioned earlier (monitoring all nodes as added to DOM), observing mutations is potentially very expensive as it could happen hundreds of times a second in the correct context. The expense will be dependent on the complexity and the size of the node tree we're observing. [The accepted answer in this StackOverflow question](https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom/39332340) has some pretty rigorous suggestions for optimization, but for my purposes, this topic requires more study and some benchmarking on an actual application to better determine its viability.
-
-<figure style="text-align: center;">
-  <img src="https://vignette.wikia.nocookie.net/dpwikia/images/8/8f/S03M04_halfa_DNA_mutation.gif/revision/latest?cb=20130722031650" alt="I just wanted to use this somewhere on this post" width="500px">
-  <figcaption>I really wanted to use this cartoon mutation gif.</figcaption>
-</figure>
