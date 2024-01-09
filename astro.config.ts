@@ -4,7 +4,9 @@ import react from "@astrojs/react";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
-import { SITE } from "./src/config";
+import { SITE, sitemapBlacklist } from "./src/config";
+
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,11 +16,22 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react(),
-    sitemap(),
+    sitemap({
+      filter: page =>
+        page !== "https://www.jonopens.com/search/" && !page.includes("/tags/"),
+    }),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [
-      remarkToc,
+      [
+        remarkToc,
+        {
+          heading: "Contents",
+          maxDepth: 2,
+          tight: true,
+        },
+      ],
       [
         remarkCollapse,
         {

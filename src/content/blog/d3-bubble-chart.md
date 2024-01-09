@@ -10,6 +10,8 @@ tags:
 description: Quick guide on getting a simple bubble chart set up in D3.js.
 ---
 
+## Contents
+
 <img src="https://media.giphy.com/media/i6X9HbM4bhJ8Q/giphy.gif" alt="Data the android doing weird stuff" width="500px">
 
 I've been hearing about the visualization library called D3 since before I even knew anything about JavaScript beyond simple DOM manipulation in JQuery. That's because I've done a lot of work around drawing conclusions from data for years during my time as an SEO. It's obvious to say, but making sense of your data is absolutely essential. On the flip side, what does that data matter if it can't communicate and be understood? D3, which stands for Data-Driven Documents, can help our data find its voice.

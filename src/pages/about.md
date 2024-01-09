@@ -9,6 +9,6 @@ So I'm Jon. I'm a developer. I used to work at CARFAX, Pager, MikMak, Walmart Gl
 
 After years of tinkering with Bash scripts and Python, I decided to pivot to software engineering in 2017. I applied to the Immersive Web Development program at Flatiron School and was accepted. I graduated at the end of 2017.
 
-I’m also an SEO with over 15 years of experience. I’ve managed the SEO programs at XO Group, Inc. (formerly The Knot) and 1stdibs.com. My specialties are strategic SEO, particularly technical and content SEO, for startups and early growth stage companies. Please email me < @ > jonopens.com if you want to talk.
+I’m also an SEO with over 15 years of experience. I’ve managed the SEO programs at XO Group, Inc. (formerly The Knot) and 1stdibs.com. My specialties are strategic SEO, particularly technical and content SEO, for startups and early growth stage companies. Please connect with me on Linkedin if you want to talk.
 
 In my spare time, I like to play guitar (poorly), rock climb, run, play video games and all sorts of other things. Nice to meet ya!

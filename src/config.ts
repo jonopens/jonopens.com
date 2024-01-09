@@ -9,6 +9,8 @@ export const SITE: Site = {
   postPerPage: 3,
 };
 
+export const sitemapBlacklist = ["/tags/", "/search/"];
+
 export const LOCALE = ["en-EN"]; // set to [] to use the environment default
 
 export const LOGO_IMAGE = {
