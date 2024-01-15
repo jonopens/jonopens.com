@@ -11,6 +11,8 @@ import getSortedPosts from "@utils/getSortedPosts";
 import slugify from "@utils/slugify";
 import { SOCIALS } from "@config";
 
+import pxart from '@assets/images/pxArt.png';
+
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
@@ -43,8 +45,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <p>
         ...an experienced full stack web developer and former technical and strategic SEO (I still do consulting work!). 
         I've worked at CARFAX, Pager, MikMak and Store No. 8.
+      </p>
+      <p>
+        <img src={pxart.src} width="200px" class="float-left pr-4 pb-2" />
         I'm comfortable in React and Vue on the frontend and Node/Express on the backend. I have experience with React Native, Nest.js and Ruby/Rails.
-      </p>  
+      </p>
       <p>
         I love analytics, A/B testing and measuring performance. Really love learning new things. Recently experimenting with Elixir and Rust. 
       </p>
@@ -60,7 +65,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
-          <div class="social-wrapper">
+          <div class="social-wrapper clear-both">
             <div class="social-links">Social Links:</div>
             <Socials />
           </div>

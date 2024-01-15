@@ -19,8 +19,8 @@ export default defineConfig({
     react(),
     sitemap({
       filter: page =>
-        page !== "https://www.jonopens.com/search/" &&
-        page !== "https://www.jonopens.com/disco-floor/" &&
+        page !== "https://jonopens.com/search/" &&
+        page !== "https://jonopens.com/disco-floor/" &&
         !page.includes("/tags/"),
     }),
     mdx(),
