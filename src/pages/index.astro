@@ -47,7 +47,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         I've worked at CARFAX, Pager, MikMak and Store No. 8.
       </p>
       <p>
-        <img src={pxart.src} width="200px" class="float-left pr-4 pb-2" />
+        <img src={pxart.src} width="200px" class="pixel-art" />
         I'm comfortable in React and Vue on the frontend and Node/Express on the backend. I have experience with React Native, Nest.js and Ruby/Rails.
       </p>
       <p>
@@ -145,6 +145,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   #hero p {
     @apply my-2;
+  }
+  .pixel-art {
+    @apply float-left pr-4 pb-2;
   }
   .social-wrapper {
     @apply mt-4 flex flex-col sm:flex-row sm:items-center;
