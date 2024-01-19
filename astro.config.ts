@@ -1,17 +1,20 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
-import remarkToc from "remark-toc";
-import remarkCollapse from "remark-collapse";
-import sitemap from "@astrojs/sitemap";
-import { SITE } from "./src/config";
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
+import remarkToc from 'remark-toc';
+import remarkCollapse from 'remark-collapse';
+import sitemap from '@astrojs/sitemap';
+import { SITE } from './src/config';
 
-import mdx from "@astrojs/mdx";
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
-  trailingSlash: "never",
+  trailingSlash: 'never',
+  build: {
+    format: 'file',
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -19,9 +22,9 @@ export default defineConfig({
     react(),
     sitemap({
       filter: page =>
-        page !== "https://jonopens.com/search/" &&
-        page !== "https://jonopens.com/disco-floor/" &&
-        !page.includes("/tags/"),
+        page !== 'https://jonopens.com/search/' &&
+        page !== 'https://jonopens.com/disco-floor/' &&
+        !page.includes('/tags/'),
     }),
     mdx(),
   ],
@@ -30,7 +33,7 @@ export default defineConfig({
       [
         remarkToc,
         {
-          heading: "Contents",
+          heading: 'Contents',
           maxDepth: 2,
           tight: true,
         },
@@ -38,19 +41,19 @@ export default defineConfig({
       [
         remarkCollapse,
         {
-          test: "Table of contents",
+          test: 'Table of contents',
         },
       ],
     ],
     shikiConfig: {
-      theme: "one-dark-pro",
+      theme: 'one-dark-pro',
       wrap: true,
     },
   },
   vite: {
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
+      exclude: ['@resvg/resvg-js'],
     },
   },
-  scopedStyleStrategy: "where",
+  scopedStyleStrategy: 'where',
 });
