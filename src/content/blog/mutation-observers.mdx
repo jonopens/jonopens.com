@@ -11,6 +11,8 @@ description: MutationObserver objects can be useful to act after changes are mad
 # redirect_from: "/tests/mutation-observer-test.html"
 ---
 
+## Content
+
 Recently at Flatiron, I was building a super-simple SPA (single page application) that consumed an external API and performed some basic operations on the page. My goal was to mimic a JS file pattern I had seen with my instructor where we had an app class managing a lot of functionality, an adaptor class fetching from the API and a DogBreed class to handle the returned objects and their requisite methods.
 
 It was going well and I was getting back objects from a [fun dog API](https://dog.ceo/dog-api/). At least, it was great until I got in a bit over my head trying to attach event listeners to DOM elements I was adding to the page after completing a GET request with `fetch`, and the context of `this` I wanted to preserve was being lost in the process. I started looking for ways to perform actions based on changes to the DOM - enter the MutationObserver class.
@@ -52,7 +54,7 @@ We first have to initialize a new instance of the MutationObserver class. That r
 Let's say that we are given the above HTML. In order to start observing, we need a target and a configuration object (MutationObserverInit) that tells the Observer what should be generated in the MutationRecord instance when something changes in the DOM target.
 
 ```js
-let t = document.getElementById("pro-seo-text");
+let t = document.getElementById('pro-seo-text');
 let conf = {
   attributes: true,
   childList: true,
@@ -87,6 +89,8 @@ In essence, it seems that a big part of the value of a MutationObserver is that 
 
 One other important factor reported in [this post on the Opera dev blog](https://dev.opera.com/articles/mutation-observers-tutorial/) is that an observers are more efficient in some respect than event handlers. In an example given to add 2500 document fragments to a document, the claim is that the event handler is invoked 2500 times but the observer's callback only once. Sadly, the test that was originally used to demonstrate that fact no longer works to confirm.
 
-## MutationObserver is Neat-o, but May Not Be Great for Large Applications
+## MutationObserver Performance: May Not Be Great for Large Applications?
 
 Last thing I wanted to talk about, particularly in the context I mentioned earlier (monitoring all nodes as added to DOM), observing mutations is potentially very expensive as it could happen hundreds of times a second in the correct context. The expense will be dependent on the complexity and the size of the node tree we're observing. [The accepted answer in this StackOverflow question](https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom/39332340) has some pretty rigorous suggestions for optimization, but for my purposes, this topic requires more study and some benchmarking on an actual application to better determine its viability.
+
+That said, it seems that there is occasionally some confusion between MutationObserver and the now-deprecated Mutation event. Performance of the Mutation event was not great; MutationObserver performance, according to a [Chrome blog post](https://developer.chrome.com/blog/detect-dom-changes-with-mutation-observers) from way back in 2012, suggests they MutationObservers are, at a minimum, "faster" than Mutation Events.
