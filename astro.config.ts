@@ -27,6 +27,7 @@ export default defineConfig({
         page !== 'https://jonopens.com/disco-floor/' &&
         page !== 'https://jonopens.com/tags/' &&
         page !== 'https://jonopens.com/tags' &&
+        page !== 'https://jonopens.com/posts/1' &&
         !page.includes('/tags'),
     }),
     mdx(),
