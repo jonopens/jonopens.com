@@ -23,8 +23,11 @@ export default defineConfig({
     sitemap({
       filter: page =>
         page !== 'https://jonopens.com/search/' &&
+        page !== 'https://jonopens.com/search' &&
         page !== 'https://jonopens.com/disco-floor/' &&
-        !page.includes('/tags/'),
+        page !== 'https://jonopens.com/tags/' &&
+        page !== 'https://jonopens.com/tags' &&
+        !page.includes('/tags'),
     }),
     mdx(),
   ],

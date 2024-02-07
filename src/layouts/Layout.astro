@@ -14,12 +14,17 @@ export interface Props {
   canonicalURL?: string;
 }
 
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const canonicalLessDotHtml = canonical.includes('.html')
+    ? canonical.substring(0, canonical.length - 5)
+    : canonical;
+
 const {
   title = SITE.title,
   author = SITE.author,
   description = SITE.desc,
   ogImage = SITE.ogImage,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  canonicalURL = canonicalLessDotHtml,
 } = Astro.props;
 
 const socialImageURL = new URL(
