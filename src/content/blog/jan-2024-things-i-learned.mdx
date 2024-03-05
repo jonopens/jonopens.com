@@ -40,11 +40,31 @@ I don't know if it will become my every day driver, but it excited me that there
 
 ## shadcn/ui ‼
 
+[shadcn/ui](https://ui.shadcn.com/) made big waves in the community recently. A few of the newsletters I'm on were glowing about it, and Theo.gg on YouTube was pumped on it too. I've yet to use it, but the business proposition of a UI "library" that scaffolds components for you to customize on your own is amazing. Just a little cli call and _POW_ new component file added to your project.
+
+Suffice it to say, I want to spend more time looking at it.
+
 ## Gamepad API ⁉
+
+I'm constantly surprised by APIs that I didn't know existed, and during a recent MDN rabbithole session, I "discovered" the [Gamepad API](https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API). As someone who has long intended but never delivered to develop some small web games, learning that the Gamepad API exists made me smile.
+
+It's basic usage is mostly intuitive - an event is dispatched when a new controller is connected or disconnected, `gamepadconnected` and `gamepaddisconnected`. After connecting, a method on the `navigator` object attached to the window called, unsurprisingly, `getGamepads`.
+
+`getGamepads` returns a Gamepad object that exposes a few important properties like `buttons` and `axes` that can then be handled in game code to perform actions on the player character or in the game overall.
+
+Anyway, I'm new to this too, but now I have one fewer reason to not get started on my first simple browser game.
 
 ## iggy.rs ❓
 
+So, let me start by saying that initially I didn't actually know what iggy.rs does, and I don't have much experience with message streaming, but I am super interested in Rust and its community, so it stimulated me to do more research. It was initially a thread that showed up on [HN](https://news.ycombinator.com/item?id=38868115) linking to a [blog post on iggy.rs](https://blog.iggy.rs/posts/building-message-streaming-in-rust/) that got me started. It seems to be targeting Kafka and its ilk, seeking to surpass them in speed, resource usage and convenience (SDK available in 6 languages already!).
+
+I'm grateful for the HN thread because now I want to know more about message streaming, so thanks iggy!
+
 ## ActivityPub 🤔
+
+So this exposed a part of the web I was only partially aware of: federated social networks. I was aware of Mastodon and Lemmy and had been a Kickstarter supporter of Diaspora way back in the day, so the concept was at least not totally foreign to me, but I had no idea there was an established standard recommendation and a recent one at that ([W3C shared it in early 2018](https://www.w3.org/TR/activitypub/)).
+
+I don't have much to say other than I like discovering more about parts of the web that are still works in progress, and this was a critical piece that I can reference in the future should I work in the FediVerse.
 
 ## Cloudflare layoff TikTok 💢
 
@@ -54,4 +74,8 @@ My main takeaway here is that whoever was responsible for the planning and execu
 
 I get it. An RIF is probably horrible for all parties (if you have any soul at all), but the whole thing felt disingenuous and shameful. And then the CEO gave a limp response that reminds me how out of touch C-levels can be. They keep claiming it's a firing, but it feels like just trying to get out of paying severance during a wave of layoffs.
 
-I don't know. It's a visceral reaction from someone who was laid off in 2023 so _shrug_
+I don't know. It's a visceral reaction from someone who was laid off in 2023 so _shrug_?
+
+## The End
+
+That's it for January 2024. Here's hoping I learn more in February. Ciao!
