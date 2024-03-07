@@ -5,6 +5,7 @@ export const SITE: Site = {
   author: 'Jon Openshaw',
   desc: 'A minimal, responsive and SEO-friendly Astro blog theme.',
   title: 'Jon Openshaw | Fullstack Software Engineer & Experienced SEO Leader',
+  siteTitle: 'Jon Openshaw',
   lightAndDarkMode: true,
   postPerPage: 10,
 };

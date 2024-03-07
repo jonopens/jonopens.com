@@ -3,9 +3,10 @@ export type Site = {
   author: string;
   desc: string;
   title: string;
-  ogImage?: string;
+  siteTitle: string;
   lightAndDarkMode: boolean;
   postPerPage: number;
+  ogImage?: string;
 };
 
 export type SocialObjects = {
@@ -20,23 +21,23 @@ export type SocialIcons = {
 };
 
 export type SocialMedia =
-  | "Github"
-  | "Facebook"
-  | "Instagram"
-  | "LinkedIn"
-  | "Mail"
-  | "Twitter"
-  | "Twitch"
-  | "YouTube"
-  | "WhatsApp"
-  | "Snapchat"
-  | "Pinterest"
-  | "TikTok"
-  | "CodePen"
-  | "Discord"
-  | "GitLab"
-  | "Reddit"
-  | "Skype"
-  | "Steam"
-  | "Telegram"
-  | "Mastodon";
+  | 'Github'
+  | 'Facebook'
+  | 'Instagram'
+  | 'LinkedIn'
+  | 'Mail'
+  | 'Twitter'
+  | 'Twitch'
+  | 'YouTube'
+  | 'WhatsApp'
+  | 'Snapchat'
+  | 'Pinterest'
+  | 'TikTok'
+  | 'CodePen'
+  | 'Discord'
+  | 'GitLab'
+  | 'Reddit'
+  | 'Skype'
+  | 'Steam'
+  | 'Telegram'
+  | 'Mastodon';
