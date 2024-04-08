@@ -3,7 +3,7 @@ import type { Site, SocialObjects } from './types';
 export const SITE: Site = {
   website: 'https://jonopens.com',
   author: 'Jon Openshaw',
-  desc: 'A minimal, responsive and SEO-friendly Astro blog theme.',
+  desc: 'Personal site of Jon Opensive. I mean Openshaw. Pensiveshaw. Ruminations, roundups and the like on code and SEO and being alive.',
   title: 'Jon Openshaw | Fullstack Software Engineer & Experienced SEO Leader',
   siteTitle: 'Jon Openshaw',
   lightAndDarkMode: true,
