@@ -1,7 +1,7 @@
 ---
-import { SITE } from "@config";
-import "@styles/base.css";
-import { ViewTransitions } from "astro:transitions";
+import { SITE } from '@config';
+import '@styles/base.css';
+import { ViewTransitions } from 'astro:transitions';
 
 // good as a reference for loaded env vars
 // const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
@@ -16,8 +16,8 @@ export interface Props {
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const canonicalLessDotHtml = canonical.includes('.html')
-    ? canonical.substring(0, canonical.length - 5)
-    : canonical;
+  ? canonical.substring(0, canonical.length - 5)
+  : canonical;
 
 const {
   title = SITE.title,
@@ -28,7 +28,7 @@ const {
 } = Astro.props;
 
 const socialImageURL = new URL(
-  ogImage ?? SITE.ogImage ?? "og.png",
+  ogImage ?? SITE.ogImage ?? 'og.png',
   Astro.url.origin
 ).href;
 ---
@@ -71,7 +71,7 @@ const socialImageURL = new URL(
 
     <ViewTransitions />
 
-    <script is:inline src="/toggle-theme.js"></script>
+    <script is:inline src="/toggle-theme.js" defer></script>
   </head>
   <body>
     <slot />
