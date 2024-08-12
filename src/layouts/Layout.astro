@@ -3,6 +3,7 @@ import { SITE } from '@config';
 import '@styles/base.css';
 import { ViewTransitions } from 'astro:transitions';
 
+import Plausible from "@components/Plausible.astro";
 import PostHog from "@components/PostHog.astro";
 
 // good as a reference for loaded env vars
@@ -74,6 +75,7 @@ const socialImageURL = new URL(
     <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js" defer></script>
+    <Plausible />
     <PostHog />
   </head>
   <body>
