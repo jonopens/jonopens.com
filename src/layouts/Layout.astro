@@ -3,8 +3,9 @@ import { SITE } from '@config';
 import '@styles/base.css';
 import { ViewTransitions } from 'astro:transitions';
 
-import Plausible from "@components/Plausible.astro";
-import PostHog from "@components/PostHog.astro";
+import GTMHead from '@components/GTMHead.astro';
+import GTMBody from '@components/GTMBody.astro'
+import PostHog from '@components/PostHog.astro';
 
 // good as a reference for loaded env vars
 // const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
@@ -39,6 +40,7 @@ const socialImageURL = new URL(
 <!doctype html>
 <html lang="en">
   <head>
+    <GTMHead />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -75,10 +77,10 @@ const socialImageURL = new URL(
     <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js" defer></script>
-    <Plausible />
     <PostHog />
   </head>
   <body>
+    <GTMBody />
     <slot />
   </body>
 </html>
