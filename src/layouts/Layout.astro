@@ -2,10 +2,12 @@
 import { SITE } from '@config';
 import '@styles/base.css';
 import { ViewTransitions } from 'astro:transitions';
+import mixpanel from 'mixpanel-browser';
 
 import GTMHead from '@components/GTMHead.astro';
 import GTMBody from '@components/GTMBody.astro'
 import PostHog from '@components/PostHog.astro';
+import Mixpanel from '@components/Mixpanel.astro';
 
 // good as a reference for loaded env vars
 // const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
@@ -78,6 +80,7 @@ const socialImageURL = new URL(
 
     <script is:inline src="/toggle-theme.js" defer></script>
     <PostHog />
+    <Mixpanel />
   </head>
   <body>
     <GTMBody />
