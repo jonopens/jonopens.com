@@ -5,159 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Floating Badge with Hover/Click</title>
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="stylesheet" href="styles4.css">
     <style>
       .content {
-  padding: 2rem;
-  font-size: 3rem;
-}
+        padding: 2rem;
+        font-size: 3rem;
+      }
 
-.aft-badge {
-  position: absolute;
-  right: 55px;
-  top: -91.5px;
-  width: 300px;
-  height: 100px;
-  margin: 0 auto;
-  z-index: 1000;
-  cursor: pointer;
-  background: transparent url('badge.svg') 0% 0% no-repeat padding-box;
-  transition: top 0.5s ease-in;
-}
+      .aft-badge {
+        position: absolute;
+        right: 55px;
+        top: -91.5px;
+        width: 300px;
+        height: 100px;
+        margin: 0 auto;
+        z-index: 1000;
+        cursor: pointer;
+        background: transparent url('badge.svg') 0% 0% no-repeat padding-box;
+        transition: top 0.5s ease-in;
+      }
 
-.move-up {
-  top: calc(-91.5px - 368px);
-}
+      .move-up {
+        top: calc(-91.5px - 368px);
+      }
 
-.aft-badge__container {
-  position: relative;
-}
+      .aft-badge__container {
+        position: relative;
+      }
 
-.aft-badge__summary {
-  position: absolute;
-  top: 1rem;
-  left: 3rem;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  font-size: 0.75rem;
-}
+      .aft-badge__summary {
+        position: absolute;
+        top: 1rem;
+        left: 3rem;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        font-size: 0.75rem;
+      }
 
-.aft-badge__text {
-  color: #fff;
-  margin: 2px 0;
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  letter-spacing: 0.2px;
-}
+      .aft-badge__text {
+        color: #fff;
+        margin: 2px 0;
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        letter-spacing: 0.2px;
+      }
 
-.aft-badge__text--verify {
-  font-weight: bold;
-  font-size: 20px;
-}
+      .aft-badge__text--verify {
+        font-weight: bold;
+        font-size: 20px;
+      }
 
-.aft-badge__text--scantime {
-  font-size: 9px;
-}
+      .aft-badge__text--scantime {
+        font-size: 9px;
+      }
 
-.aft-badge__text--click {
-  font-size: 11px;
-  color: #A6AAC3;
-  text-decoration: underline;
-}
+      .aft-badge__text--click {
+        font-size: 11px;
+        color: #A6AAC3;
+        text-decoration: underline;
+      }
 
-.aft-badge__text--powered {
-  font-style: italic;
-  margin-top: 4px;
-}
+      .aft-badge__text--powered {
+        font-style: italic;
+        margin-top: 4px;
+      }
 
-.aft-badge__img-inline {
-  margin: 0 8px;
-  width: 100px;
-  display: inline;
-}
+      .aft-badge__img-inline {
+        margin: 0 8px;
+        width: 100px;
+        display: inline;
+      }
 
-.aft-details {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  right: 55px;
-  top: -368px;
-  height: 368px;
-  width: 300px;
-  margin: 0 auto;
-  z-index: 999;
-  cursor: pointer;
-  background-color: green;
-  transition: visibility 0.5s, opacity 0.5s ease-in;
-}
+      .aft-details {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        right: 55px;
+        top: -368px;
+        height: 368px;
+        width: 300px;
+        margin: 0 auto;
+        z-index: 999;
+        cursor: pointer;
+        background-color: green;
+        transition: visibility 0.5s, opacity 0.5s ease-in;
+      }
 
-.ease-in {
-  visibility: visible;
-  opacity: 1;
-}
+      .ease-in {
+        visibility: visible;
+        opacity: 1;
+      }
 
-@media screen and (max-width: 480px) {
-  .aft-badge {
-    right: 35px;
-    top: -64.75px;
-    width: 210px;
-    height: 70px;
-  }
+      @media screen and (max-width: 480px) {
+        .aft-badge {
+          right: 35px;
+          top: -64.75px;
+          width: 210px;
+          height: 70px;
+        }
 
-  .move-up {
-    top: calc(-64.75px - 257px);
-  }
+        .move-up {
+          top: calc(-64.75px - 257px);
+        }
 
-  .aft-badge__summary {
-    top: 0.52rem;
-    left: 2rem;
-  }
+        .aft-badge__summary {
+          top: 0.52rem;
+          left: 2rem;
+        }
 
-  .aft-badge__text {
-    margin: 1px 0;
-  }
-  .aft-badge__text--scantime {
-    font-size: 8px;
-  }
+        .aft-badge__text {
+          margin: 1px 0;
+        }
+        .aft-badge__text--scantime {
+          font-size: 8px;
+        }
 
-  .aft-badge__text--click {
-    font-size: 10px;
-  }
+        .aft-badge__text--click {
+          font-size: 10px;
+        }
 
-  .aft-badge__text--verify {
-    font-size: 16px;
-  }
+        .aft-badge__text--verify {
+          font-size: 16px;
+        }
 
-  .aft-badge__text--powered {
-    font-style: italic;
-    font-size: 9px;
-    margin-top: 0;
-  }
+        .aft-badge__text--powered {
+          font-style: italic;
+          font-size: 9px;
+          margin-top: 0;
+        }
 
-  .aft-badge__img-inline {
-    margin: 0 2px;
-    width: 80px;
-  }
+        .aft-badge__img-inline {
+          margin: 0 2px;
+          width: 80px;
+        }
 
-  .aft-details {
-    right: 35px;
-    top: -257.6px;
-    height: 257.6px;
-    width: 210px;
-  }
-}
+        .aft-details {
+          right: 35px;
+          top: -257.6px;
+          height: 257.6px;
+          width: 210px;
+        }
+      }
 
-.overlapped {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border-top: 3px black solid;
-  background-color: #fff;
-}
+      .overlapped {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        border-top: 3px black solid;
+        background-color: #fff;
+      }
     </style>
   </head>
 
