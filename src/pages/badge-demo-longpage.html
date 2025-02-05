@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Badge with Hover/Click</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      .content {
+        padding: 2rem;
+        font-size: 3rem;
+        height: 4000px;
+      }
+
+      .aft-badge {
+        position: absolute;
+        right: 55px;
+        top: -91.5px;
+        width: 300px;
+        height: 100px;
+        margin: 0 auto;
+        z-index: 1000;
+        cursor: pointer;
+        background: transparent url('badge.svg') 0% 0% no-repeat padding-box;
+        transition: top 0.5s ease-in;
+      }
+
+      .move-up {
+        top: calc(-91.5px - 332px);
+      }
+
+      .aft-badge__container {
+        position: relative;
+      }
+
+      .aft-badge__summary {
+        position: absolute;
+        top: 1rem;
+        left: 3rem;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        font-size: 0.75rem;
+      }
+
+      .aft-badge__text {
+        color: #fff;
+        margin: 2px 0;
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        letter-spacing: 0.2px;
+      }
+
+      .aft-badge__text--verify {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .aft-badge__text--scantime {
+        font-size: 9px;
+      }
+
+      .aft-badge__text--click {
+        font-size: 11px;
+        color: #A6AAC3;
+        text-decoration: underline;
+      }
+
+      .aft-badge__text--powered {
+        font-style: italic;
+        margin-top: 4px;
+      }
+
+      .aft-badge__img-inline {
+        margin: 0 8px;
+        width: 100px;
+        display: inline;
+      }
+
+      .aft-details {
+        visibility: hidden;
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding-top: 39px;
+        right: 55px;
+        top: -368px;
+        height: 329px;
+        width: 300px;
+        z-index: 999;
+        background: #F4F7FC 0% 0% no-repeat padding-box;
+        opacity: 0;
+        transition: visibility 0.5s, opacity 0.5s ease-in;
+      }
+
+      .ease-in {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .aft-details__partner {
+        text-align: center;
+        padding-top: 1rem;
+      }
+
+      .aft-details__partner--name {
+        font-weight: bold;
+        font-size: 0.85rem;
+        padding-bottom: 0.25rem;
+      }
+
+      .aft-details__partner--address {
+        font-size: 0.7rem;
+      }
+
+      .aft-details__checks {
+        border-top: 1px solid #3338FF;
+        border-bottom: 1px solid #3338FF;
+        padding: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .aft-details__checks--line {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin: 0.25rem 0;
+        color: #3338FF;
+      }
+
+      .aft-details__checks--line:before {
+        padding-right: 0.3rem;
+        content: url('checkmark.svg');
+      }
+      .aft-details__checks--line:after {
+        padding-left: 0.3rem;
+        content: url('info.svg');
+      }
+
+      .aft-details__reviews {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: calc(100% - 2rem);
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .aft-details__caret {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 18px;
+        width: 100%;
+        background: #3338FF 0% 0% no-repeat padding-box;
+      }
+
+      @media screen and (max-width: 480px) {
+        .aft-badge {
+          right: 35px;
+          top: -64.75px;
+          width: 210px;
+          height: 70px;
+        }
+
+        .move-up {
+          top: calc(-64.75px - 235px);
+        }
+
+        .aft-badge__summary {
+          top: 0.52rem;
+          left: 2rem;
+        }
+
+        .aft-badge__text {
+          margin: 1px 0;
+        }
+        .aft-badge__text--scantime {
+          font-size: 8px;
+        }
+
+        .aft-badge__text--click {
+          font-size: 10px;
+        }
+
+        .aft-badge__text--verify {
+          font-size: 16px;
+        }
+
+        .aft-badge__text--powered {
+          font-style: italic;
+          font-size: 9px;
+          margin-top: 0;
+        }
+
+        .aft-badge__img-inline {
+          margin: 0 2px;
+          width: 80px;
+        }
+
+        .aft-details {
+          right: 35px;
+          top: -268.6px;
+          height: 229.6px;
+          width: 210px;
+        }
+
+        .aft-details__partner {
+          padding-top: 0.1rem;
+        }
+
+        .aft-details__partner--name {
+          padding-bottom: 0;
+        }
+
+        .aft-details__checks {
+          padding: 0.25rem;
+        }
+
+        .aft-details__checks--line {
+          margin: 0.1rem 0;
+        }
+
+        @supports (-webkit-hyphens:none) { /* safari 9+ */
+          .aft-badge__text {
+            margin: 0;
+          }
+
+          .aft-badge__text--verify {
+            font-size: 14px;
+          }
+
+          .aft-badge__text--powered {
+            font-style: italic;
+            font-size: 9px;
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .util-bold {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      .overlapped {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        border-top: 3px black solid;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="content">
+      <h1>Demo Page</h1>
+      <p>This is some background content that will remain visible when the modal is displayed.</p>
+    </div>
+    <div class="overlapped">
+      <div id="badge" class="aft-badge">
+        <div class="aft-badge__container">
+          <div class="aft-badge__summary">
+            <div class="aft-badge__text aft-badge__text--verify">Reviews Verified</div>
+            <div class="aft-badge__text aft-badge__text--scantime">Last Scanned 9:55 AM MST</div>
+            <div class="aft-badge__text aft-badge__text--click">CLICK FOR PROFILE</div>
+            <div class="aft-badge__text aft-badge__text--powered">
+              Powered by: <img class="aft-badge__img-inline" src="the-transparency-co-white-text.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="details" class="aft-details">
+        <div class="aft-details__partner">
+          <div class="aft-details__partner--name">First Street Plumbing</div>
+          <div class="aft-details__partner--address">497 Evergreen Rd. Roseville, CA 95673</div>
+        </div>
+        <div class="aft-details__checks">
+          <div class="aft-details__checks--line">AI Review Check</div>
+          <div class="aft-details__checks--line">Review Plagiarism Check</div>
+          <div class="aft-details__checks--line">Fake Profile Check</div>
+          <div class="aft-details__checks--line">Business Metrics Check</div>
+          <div class="aft-details__checks--line">Consumer Identification</div>
+        </div>
+        <div class="aft-details__reviews">
+          <div class="aft-details__reviews--avg-rating">
+            <div><span class="util-bold">4.5</span> out of 5</div>
+            <div>average rating</div>
+          </div>
+          <div class="aft-details__reviews--map-icon">
+            <img src="maps-pin.png" />
+          </div>
+          <div class="aft-details__reviews--review-count">
+            <div class="util-bold">1057</div>
+            <div>total reviews</div>
+          </div>
+        </div>
+        <div id="caret" class="aft-details__caret">
+          <img src="down-caret-sm.svg" />
+        </div>
+      </div>
+      <p>Just to put something here.</p>
+    </div>
+  </body>
+  <script>
+    const badge = document.getElementById('badge');
+    const details = document.getElementById('details');
+    const caret = document.getElementById('caret');
+
+    const isSmallScreen = window.innerWidth < 481;
+    const DETAILS_HEIGHT = isSmallScreen ? '257.6px' : '368px';
+    const DETAILS_WIDTH = isSmallScreen ? '210px' : '300px';
+
+    let isDetailSectionOpen = false;
+
+    const handleClick = () => {
+      if (isDetailSectionOpen) {
+        badge.classList.remove('move-up');
+        details.classList.remove('ease-in');
+      } else {
+        badge.classList.add('move-up');
+        details.classList.add('ease-in');
+      }
+
+      isDetailSectionOpen = !isDetailSectionOpen;
+    };
+
+    badge.addEventListener('click', handleClick);
+    caret.addEventListener('click', handleClick);
+  </script>
+</html>
