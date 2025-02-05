@@ -25,7 +25,7 @@
       }
 
       .move-up {
-        top: calc(-91.5px - 329px);
+        top: calc(-91.5px - 332px);
       }
 
       .aft-badge__container {
@@ -85,9 +85,10 @@
         position: absolute;
         right: 55px;
         top: -368px;
-        height: 368px;
+        height: 329px;
         width: 300px;
         margin: 0 auto;
+        padding-top: 39px;
         z-index: 999;
         cursor: pointer;
         background-color: green;
@@ -99,6 +100,8 @@
         opacity: 1;
       }
 
+
+
       @media screen and (max-width: 480px) {
         .aft-badge {
           right: 35px;
@@ -108,7 +111,7 @@
         }
 
         .move-up {
-          top: calc(-64.75px - 257px);
+          top: calc(-64.75px - 225px);
         }
 
         .aft-badge__summary {
@@ -144,9 +147,37 @@
 
         .aft-details {
           right: 35px;
-          top: -257.6px;
-          height: 257.6px;
+          top: -258.6px;
+          height: 219.6px;
           width: 210px;
+        }
+
+        @supports (-webkit-hyphens:none) { /* safari 9+ */
+          .aft-badge__text {
+          margin: 0;
+          }
+          .aft-badge__text--scantime {
+            font-size: 8px;
+          }
+
+          .aft-badge__text--click {
+            font-size: 10px;
+          }
+
+          .aft-badge__text--verify {
+            font-size: 14px;
+          }
+
+          .aft-badge__text--powered {
+            font-style: italic;
+            font-size: 9px;
+            margin-top: 2px;
+          }
+
+          .aft-badge__img-inline {
+            margin: 0 2px;
+            width: 80px;
+          }
         }
       }
 
