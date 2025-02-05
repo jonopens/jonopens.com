@@ -81,17 +81,22 @@
 
       .aft-details {
         visibility: hidden;
-        opacity: 0;
         position: absolute;
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding-top: 39px;
         right: 55px;
         top: -368px;
         height: 329px;
         width: 300px;
-        margin: 0 auto;
-        padding-top: 39px;
         z-index: 999;
-        cursor: pointer;
-        background-color: green;
+        background: #F4F7FC 0% 0% no-repeat padding-box;
+        opacity: 0;
         transition: visibility 0.5s, opacity 0.5s ease-in;
       }
 
@@ -100,7 +105,48 @@
         opacity: 1;
       }
 
+      .aft-details__partner {
+        text-align: center;
+      }
 
+      .after-details__partner--name {
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+
+      .after-details__partner--address {
+        font-size: 0.7rem;
+      }
+
+      .aft-details__checks {
+        margin: 0.125rem 0;
+        font-size: 0.8rem;
+      }
+
+      .aft-details__checks--line {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin: 0.25rem 0;
+      }
+
+      .aft-details__checks--line:before {
+        padding-right: 0.3rem;
+        content: url('checkmark.svg');
+      }
+      .aft-details__checks--line:after {
+        padding-left: 0.3rem;
+        content: url('info.svg');
+      }
+
+      .aft-details__caret {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 18px;
+        width: 100%;
+        background: #3338FF 0% 0% no-repeat padding-box;
+      }
 
       @media screen and (max-width: 480px) {
         .aft-badge {
@@ -154,14 +200,7 @@
 
         @supports (-webkit-hyphens:none) { /* safari 9+ */
           .aft-badge__text {
-          margin: 0;
-          }
-          .aft-badge__text--scantime {
-            font-size: 8px;
-          }
-
-          .aft-badge__text--click {
-            font-size: 10px;
+            margin: 0;
           }
 
           .aft-badge__text--verify {
@@ -172,11 +211,6 @@
             font-style: italic;
             font-size: 9px;
             margin-top: 2px;
-          }
-
-          .aft-badge__img-inline {
-            margin: 0 2px;
-            width: 80px;
           }
         }
       }
@@ -210,10 +244,21 @@
         </div>
       </div>
       <div id="details" class="aft-details">
-        <div class="aft-details__partner">partner biz info</div>
-        <div class="aft-details__checks">section for checks</div>
+        <div class="aft-details__partner">
+          <div class="after-details__partner--name">First Street Plumbing</div>
+          <div class="after-details__partner--address">497 Evergreen Rd. Roseville, CA 95673</div>
+        </div>
+        <div class="aft-details__checks">
+          <div class="aft-details__checks--line">AI Review Check</div>
+          <div class="aft-details__checks--line">Review Plagiarism Check</div>
+          <div class="aft-details__checks--line">Fake Profile Check</div>
+          <div class="aft-details__checks--line">Business Metrics Check</div>
+          <div class="aft-details__checks--line">Consumer Identification</div>
+        </div>
         <div class="aft-details__reviews">review deets</div>
-        <div id="caret" class="aft-details__caret">clicky</div>
+        <div id="caret" class="aft-details__caret">
+          <img src="down-caret-sm.svg" />
+        </div>
       </div>
       <p>Just to put something here.</p>
     </div>
