@@ -107,11 +107,13 @@
 
       .aft-details__partner {
         text-align: center;
+        padding-top: 1rem;
       }
 
       .after-details__partner--name {
         font-weight: bold;
         font-size: 0.85rem;
+        padding-bottom: 0.25rem;
       }
 
       .after-details__partner--address {
@@ -119,7 +121,9 @@
       }
 
       .aft-details__checks {
-        margin: 0.125rem 0;
+        border-top: 1px solid #3338FF;
+        border-bottom: 1px solid #3338FF;
+        padding: 1rem;
         font-size: 0.8rem;
       }
 
@@ -128,6 +132,7 @@
         justify-content: left;
         align-items: center;
         margin: 0.25rem 0;
+        color: #3338FF;
       }
 
       .aft-details__checks--line:before {
@@ -137,6 +142,15 @@
       .aft-details__checks--line:after {
         padding-left: 0.3rem;
         content: url('info.svg');
+      }
+
+      .aft-details__reviews {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: calc(100% - 2rem);
+        font-size: 0.8rem;
+        text-align: center;
       }
 
       .aft-details__caret {
@@ -215,6 +229,11 @@
         }
       }
 
+      .util-bold {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
       .overlapped {
         position: fixed;
         bottom: 0;
@@ -255,7 +274,19 @@
           <div class="aft-details__checks--line">Business Metrics Check</div>
           <div class="aft-details__checks--line">Consumer Identification</div>
         </div>
-        <div class="aft-details__reviews">review deets</div>
+        <div class="aft-details__reviews">
+          <div class="aft-details__reviews--avg-rating">
+            <div><span class="util-bold">4.5</span> out of 5</div>
+            <div>average rating</div>
+          </div>
+          <div class="aft-details__reviews--map-icon">
+            <img src="maps-pin.png" />
+          </div>
+          <div class="aft-details__reviews--review-count">
+            <div class="util-bold">1057</div>
+            <div>total reviews</div>
+          </div>
+        </div>
         <div id="caret" class="aft-details__caret">
           <img src="down-caret-sm.svg" />
         </div>
