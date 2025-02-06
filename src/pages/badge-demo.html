@@ -83,7 +83,6 @@
         visibility: hidden;
         position: absolute;
         font-family: 'Roboto', sans-serif;
-        cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -134,6 +133,15 @@
         align-items: center;
         margin: 0.25rem 0;
         color: #3338FF;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.5s, opacity 0.5s ease-in;
+        transition-delay: 0s;
+      }
+
+      .fades-in {
+        visibility: visible;
+        opacity: 1;
       }
 
       .aft-details__checks--line:before {
@@ -156,6 +164,7 @@
 
       .aft-details__caret {
         display: flex;
+        cursor: pointer;
         justify-content: center;
         align-items: center;
         height: 18px;
@@ -315,10 +324,9 @@
     const badge = document.getElementById('badge');
     const details = document.getElementById('details');
     const caret = document.getElementById('caret');
-
-    const isSmallScreen = window.innerWidth < 481;
-    const DETAILS_HEIGHT = isSmallScreen ? '257.6px' : '368px';
-    const DETAILS_WIDTH = isSmallScreen ? '210px' : '300px';
+    const checksList = document.querySelectorAll('.aft-details__checks--line');
+    
+    const BASE_DELAY = 0.4;
 
     let isDetailSectionOpen = false;
 
@@ -326,9 +334,17 @@
       if (isDetailSectionOpen) {
         badge.classList.remove('move-up');
         details.classList.remove('ease-in');
+        checksList.forEach((check, idx) => {
+          check.classList.remove('fades-in');;
+        });
       } else {
         badge.classList.add('move-up');
         details.classList.add('ease-in');
+        checksList.forEach((check, idx) => {
+          const delay = BASE_DELAY + (idx * BASE_DELAY);
+          check.classList.add('fades-in');
+          check.style.transitionDelay = `${delay}s`;
+        });
       }
 
       isDetailSectionOpen = !isDetailSectionOpen;
