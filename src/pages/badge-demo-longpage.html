@@ -333,14 +333,19 @@
 
     const handleClick = () => {
       if (isDetailSectionOpen) {
+        details.style.transitionDelay = '0s';
+        details.style.transitionDuration = '0.2s';
+
         badge.classList.remove('move-up');
         details.classList.remove('ease-in');
+
         checksList.forEach((check, idx) => {
           check.classList.remove('fades-in')
         });
       } else {
         badge.classList.add('move-up');
         details.classList.add('ease-in');
+
         checksList.forEach((check, idx) => {
           const delay = BASE_DELAY + (idx * BASE_DELAY);
           check.classList.add('fades-in')
