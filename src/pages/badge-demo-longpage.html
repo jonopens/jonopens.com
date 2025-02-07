@@ -340,6 +340,8 @@
         details.classList.remove('ease-in');
 
         checksList.forEach((check, idx) => {
+          check.style.transitionDelay = '0s';
+          check.style.transitionDuration = '0s';
           check.classList.remove('fades-in')
         });
       } else {
