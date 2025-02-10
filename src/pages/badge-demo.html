@@ -129,6 +129,7 @@
 
       .aft-details__checks--line {
         display: flex;
+        position: relative;
         justify-content: left;
         align-items: center;
         margin: 0.25rem 0;
@@ -145,12 +146,30 @@
       }
 
       .aft-details__checks--line:before {
-        padding-right: 0.3rem;
+        padding-right: 0.5rem;
         content: url('checkmark.svg');
       }
-      .aft-details__checks--line:after {
-        padding-left: 0.3rem;
-        content: url('info.svg');
+
+      .aft-details__checks--info {
+        padding-left: 0.5rem;
+        cursor: pointer;
+      }
+
+      .tooltip {
+        display: none;
+        position: absolute;
+        top: 1.5rem;
+        left: 0;
+        width: 260px;
+        height: 120px;
+        border: 1px solid #DBE2EA;
+        background-color: #fff;
+        box-shadow: 0px 4px 8px #2C27380A;
+        z-index: 1001;
+      }
+
+      .tooltip.show {
+        display: block;
       }
 
       .aft-details__reviews {
@@ -299,11 +318,31 @@
           <div class="aft-details__partner--address">497 Evergreen Rd. Roseville, CA 95673</div>
         </div>
         <div class="aft-details__checks">
-          <div class="aft-details__checks--line">AI Review Check</div>
-          <div class="aft-details__checks--line">Review Plagiarism Check</div>
-          <div class="aft-details__checks--line">Fake Profile Check</div>
-          <div class="aft-details__checks--line">Business Metrics Check</div>
-          <div class="aft-details__checks--line">Consumer Identification</div>
+          <div class="aft-details__checks--line">
+            AI Review Check
+            <span id="tooltip-ai" class="aft-details__checks--info"><img src="info.svg" /></span>
+            <div class="tooltip">test 0</div>
+          </div>
+          <div class="aft-details__checks--line">
+            Review Plagiarism Check
+            <span id="tooltip-plagiarism" class="aft-details__checks--info"><img src="info.svg" /></span>
+            <div class="tooltip">test 1</div>
+          </div>
+          <div class="aft-details__checks--line">
+            Fake Profile Check
+            <span id="tooltip-fake" class="aft-details__checks--info"><img src="info.svg" /></span>
+            <div class="tooltip">test 2</div>
+          </div>
+          <div class="aft-details__checks--line">
+            Business Metrics Check
+            <span id="tooltip-metrics" class="aft-details__checks--info"><img src="info.svg" /></span>
+            <div class="tooltip">test 3</div>
+          </div>
+          <div class="aft-details__checks--line">
+            Consumer Identification
+            <span id="tooltip-consumer" class="aft-details__checks--info"><img src="info.svg" /></span>
+            <div class="tooltip">test 4</div>
+          </div>
         </div>
         <div class="aft-details__reviews">
           <div class="aft-details__reviews--avg-rating">
@@ -330,28 +369,45 @@
     const details = document.getElementById('details');
     const caret = document.getElementById('caret');
     const checksList = document.querySelectorAll('.aft-details__checks--line');
+    const tooltips = document.querySelectorAll('.tooltip');
+    const infoIcons = document.querySelectorAll('.aft-details__checks--info');
     
     const BASE_DELAY = 0.4;
 
     let isDetailSectionOpen = false;
+
+    document.addEventListener('click', (e) => {
+      tooltips.forEach(tooltip => {
+        if (!e.target.closest('.aft-details__checks--info')) {
+          tooltip.classList.remove('show');
+        }
+      });
+    });
+
+    infoIcons.forEach((infoIcon, index) => {
+      infoIcon.addEventListener('click', () => {
+        const tooltip = tooltips[index];
+        tooltip.classList.toggle('show');
+      });
+    });
 
     const handleClick = () => {
       if (isDetailSectionOpen) {
         details.style.transitionDelay = '0s';
         details.style.transitionDuration = '0.2s';
 
-        badge.classList.remove('move-up');
-        details.classList.remove('ease-in');
+        badge.classList.toggle('move-up');
+        details.classList.toggle('ease-in');
         
 
         checksList.forEach((check, idx) => {
           check.style.transitionDelay = '0s';
           check.style.transitionDuration = '0s';
-          check.classList.remove('fades-in');;
+          check.classList.remove('fades-in');
         });
       } else {
-        badge.classList.add('move-up');
-        details.classList.add('ease-in');
+        badge.classList.toggle('move-up');
+        details.classList.toggle('ease-in');
   
         checksList.forEach((check, idx) => {
           const delay = BASE_DELAY + (idx * BASE_DELAY);
