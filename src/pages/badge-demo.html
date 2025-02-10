@@ -369,27 +369,10 @@
     const details = document.getElementById('details');
     const caret = document.getElementById('caret');
     const checksList = document.querySelectorAll('.aft-details__checks--line');
-    const tooltips = document.querySelectorAll('.tooltip');
-    const infoIcons = document.querySelectorAll('.aft-details__checks--info');
     
     const BASE_DELAY = 0.4;
 
     let isDetailSectionOpen = false;
-
-    document.addEventListener('click', (e) => {
-      tooltips.forEach(tooltip => {
-        if (!e.target.closest('.aft-details__checks--info')) {
-          tooltip.classList.remove('show');
-        }
-      });
-    });
-
-    infoIcons.forEach((infoIcon, index) => {
-      infoIcon.addEventListener('click', () => {
-        const tooltip = tooltips[index];
-        tooltip.classList.toggle('show');
-      });
-    });
 
     const handleClick = () => {
       if (isDetailSectionOpen) {
@@ -421,5 +404,24 @@
 
     badge.addEventListener('click', handleClick);
     caret.addEventListener('click', handleClick);
+  </script>
+  <script>
+    const tooltips = document.querySelectorAll('.tooltip');
+    const infoIcons = document.querySelectorAll('.aft-details__checks--info');
+
+    document.addEventListener('click', (e) => {
+      tooltips.forEach(tooltip => {
+        if (!e.target.closest('.aft-details__checks--info')) {
+          tooltip.classList.remove('show');
+        }
+      });
+    });
+
+    infoIcons.forEach((infoIcon, index) => {
+      infoIcon.addEventListener('click', () => {
+        const tooltip = tooltips[index];
+        tooltip.classList.toggle('show');
+      });
+    });
   </script>
 </html>
