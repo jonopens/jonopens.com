@@ -373,6 +373,12 @@
   </body>
   <script async>
     const getRatingData = async () => {
+
+      const formatCrawlDate = (dateString) => {
+        const crawlDate = new Date(dateString);
+
+        return
+      }
       // endpoint should probably be set via dashboard, esp. if this ends up wrapped in iframe
       const widgetEndpoint = 'https://transparency-badge.john-d2c.workers.dev/widget/';
       const cid = '10343294001459065910';
@@ -385,7 +391,7 @@
 
       const response = await fetch(`${widgetEndpoint}${cid}`)
         .catch(err => console.error(err));
-      const data = response && response.ok ? response.json() : {};
+      const data = response && response.ok ? await response.json() : {};
 
       bizName.textContent = data.name || 'First Street Plumbing';
       bizAddress.textContent = data.address || '497 Evergreen Rd. Roseville, CA 95673';
