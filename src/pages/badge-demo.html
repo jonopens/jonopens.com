@@ -388,7 +388,6 @@
 
         badge.classList.toggle('move-up');
         details.classList.toggle('ease-in');
-        
 
         checksList.forEach((check, idx) => {
           check.style.transitionDelay = '0s';
@@ -398,11 +397,14 @@
       } else {
         badge.classList.toggle('move-up');
         details.classList.toggle('ease-in');
+        details.style.removeProperty('transition-delay');
+        details.style.removeProperty('transition-duration');
   
         checksList.forEach((check, idx) => {
           const delay = BASE_DELAY + (idx * BASE_DELAY);
           check.classList.add('fades-in');
           check.style.transitionDelay = `${delay}s`;
+          check.style.transitionDuration = '0.2s';
         });
       }
 
