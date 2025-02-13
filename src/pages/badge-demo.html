@@ -70,7 +70,7 @@
 
       .aft-badge__text--powered {
         font-style: italic;
-        margin-top: 4px;
+        margin-top: 3px;
       }
 
       .aft-badge__img-inline {
@@ -114,10 +114,12 @@
         font-weight: bold;
         font-size: 0.85rem;
         padding-bottom: 0.25rem;
+        text-wrap: balance;
       }
 
       .aft-details__partner--address {
         font-size: 0.7rem;
+        text-wrap: balance;
       }
 
       .aft-details__checks {
@@ -161,7 +163,6 @@
         top: 1.5rem;
         left: 0;
         width: 160px;
-        height: 120px;
         padding: 16px;
         border: 1px solid #DBE2EA;
         background-color: #fff;
@@ -257,6 +258,14 @@
 
         .aft-details__checks--line {
           margin: 0.1rem 0;
+        }
+
+        .aft-details__checks--line:before {
+          transform: scale(0.7);
+        }
+
+        .aft-details__reviews--map-icon {
+          transform: scale(0.7);
         }
 
         .tooltip {
@@ -373,11 +382,24 @@
   </body>
   <script async>
     const getRatingData = async () => {
-
       const formatCrawlDate = (dateString) => {
-        const crawlDate = new Date(dateString);
+        const isSmallWindow = window.innerWidth <= 480;
 
-        return
+        const crawlDate = new Date(dateString);
+        const formatOptions =  isSmallWindow 
+          ? {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          } : {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          };
+
+        return crawlDate.toLocaleDateString('en-US', formatOptions);
       }
       // endpoint should probably be set via dashboard, esp. if this ends up wrapped in iframe
       const widgetEndpoint = 'https://transparency-badge.john-d2c.workers.dev/widget/';
@@ -398,8 +420,8 @@
       avgRating.textContent = data.avg_rating || '4.5';
       reviewCount.textContent = data.review_count || '1037';
       lastScan.textContent = data.last_crawled_at 
-        ? `Last Scanned ${data.last_crawled_at}` 
-        : 'Last Scanned: Never';
+        ? `Last Scan: ${formatCrawlDate(data.last_crawled_at)}` 
+        : 'Last Scan: Unknown';
    };
 
    getRatingData()
