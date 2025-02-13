@@ -311,7 +311,7 @@
         <div class="aft-badge__container">
           <div class="aft-badge__summary">
             <div class="aft-badge__text aft-badge__text--verify">Reviews Verified</div>
-            <div class="aft-badge__text aft-badge__text--scantime">Last Scanned 9:55 AM MST</div>
+            <div class="aft-badge__text aft-badge__text--scantime" id="last-scan"></div>
             <div class="aft-badge__text aft-badge__text--click">CLICK FOR PROFILE</div>
             <div class="aft-badge__text aft-badge__text--powered">
               Powered by: <img class="aft-badge__img-inline" src="the-transparency-co-white-text.svg" />
@@ -321,46 +321,46 @@
       </div>
       <div id="details" class="aft-details">
         <div class="aft-details__partner">
-          <div class="aft-details__partner--name">First Street Plumbing</div>
-          <div class="aft-details__partner--address">497 Evergreen Rd. Roseville, CA 95673</div>
+          <div id="partner-name" class="aft-details__partner--name"></div>
+          <div id="partner-address" class="aft-details__partner--address"></div>
         </div>
         <div class="aft-details__checks">
           <div class="aft-details__checks--line">
             AI Review Check
             <span id="tooltip-ai" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">test 0</div>
+            <div class="tooltip">This check analyzes reviews using AI-powered detection models to identify patterns indicative of generative AI-written or manipulated content, ensuring all reviews are authentic and human-generated.</div>
           </div>
           <div class="aft-details__checks--line">
             Review Plagiarism Check
             <span id="tooltip-plagiarism" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">test 1</div>
+            <div class="tooltip">This check detects duplicate or templated reviews across multiple businesses, flagging instances where reviews may have been copied, mass-produced, or artificially generated.</div>
           </div>
           <div class="aft-details__checks--line">
             Fake Profile Check
             <span id="tooltip-fake" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">test 2</div>
+            <div class="tooltip">This check audits reviewer profiles for suspicious activity, such as limited review history, geographic anomalies, or participation in known fake review networks, helping to eliminate fraudulent contributions.</div>
           </div>
           <div class="aft-details__checks--line">
             Business Metrics Check
             <span id="tooltip-metrics" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">test 3</div>
+            <div class="tooltip">This check evaluates key business listing metrics, including review velocity, rating distribution, and customer engagement trends, to ensure the business maintains organic and credible review activity.</div>
           </div>
           <div class="aft-details__checks--line">
             Consumer Identification
             <span id="tooltip-consumer" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">test 4</div>
+            <div class="tooltip">This check assesses whether reviews are from real customers by analyzing behavioral patterns, past contributions, and contextual relevance, preventing misleading or inauthentic testimonials.</div>
           </div>
         </div>
         <div class="aft-details__reviews">
           <div class="aft-details__reviews--avg-rating">
-            <div><span class="util-bold">4.5</span> out of 5</div>
+            <div><span id="avg-rating" class="util-bold"></span> out of 5</div>
             <div>average rating</div>
           </div>
           <div class="aft-details__reviews--map-icon">
             <img src="maps-pin.png" />
           </div>
           <div class="aft-details__reviews--review-count">
-            <div class="util-bold">1057</div>
+            <div id="review-count" class="util-bold"></div>
             <div>total reviews</div>
           </div>
         </div>
@@ -371,6 +371,37 @@
       <p>Just to put something here.</p>
     </div>
   </body>
+  <script async>
+    const getRatingData = async () => {
+      // endpoint should probably be set via dashboard, esp. if this ends up wrapped in iframe
+      const widgetEndpoint = 'https://transparency-badge.john-d2c.workers.dev/widget/';
+      const cid = '10343294001459065910';
+      const options = {
+        method: 'GET',
+        mode: 'cors',
+      };
+
+      const bizName = document.getElementById('partner-name');
+      const bizAddress = document.getElementById('partner-address');
+      const avgRating = document.getElementById('avg-rating');
+      const reviewCount = document.getElementById('review-count');
+      const lastScan = document.getElementById('last-scan');
+
+      const response = await fetch(`${widgetEndpoint}${cid}`, options)
+        .catch(err => console.error(err));
+      const data = response && response.ok ? response.json() : {};
+
+      bizName.textContent = data.name || 'Business Name';
+      bizAddress.textContent = data.address || '497 Evergreen Rd. Roseville, CA 95673';
+      avgRating.textContent = data.avg_rating || '4.5';
+      reviewCount.textContent = data.review_count || '0';
+      lastScan.textContent = data.last_crawled_at 
+        ? `Last Scanned ${data.last_crawled_at}` 
+        : 'Last Scanned: Never';
+   };
+
+   getRatingData()
+  </script>
   <script>
     const badge = document.getElementById('badge');
     const details = document.getElementById('details');
@@ -433,4 +464,5 @@
       });
     });
   </script>
+
 </html>
