@@ -328,27 +328,27 @@
           <div class="aft-details__checks--line">
             AI Review Check
             <span id="tooltip-ai" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">This check analyzes reviews using AI-powered detection models to identify patterns indicative of generative AI-written or manipulated content, ensuring all reviews are authentic and human-generated.</div>
+            <div class="tooltip">Detects AI-generated reviews using advanced models that analyze writing patterns, ensuring all reviews are authentic and human-written.</div>
           </div>
           <div class="aft-details__checks--line">
             Review Plagiarism Check
             <span id="tooltip-plagiarism" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">This check detects duplicate or templated reviews across multiple businesses, flagging instances where reviews may have been copied, mass-produced, or artificially generated.</div>
+            <div class="tooltip">Identifies copied or templated reviews across multiple businesses, flagging mass-produced or artificially generated content.</div>
           </div>
           <div class="aft-details__checks--line">
             Fake Profile Check
             <span id="tooltip-fake" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">This check audits reviewer profiles for suspicious activity, such as limited review history, geographic anomalies, or participation in known fake review networks, helping to eliminate fraudulent contributions.</div>
+            <div class="tooltip">Audits reviewer profiles for suspicious activity, such as limited history, geographic anomalies, or fake review network participation.</div>
           </div>
           <div class="aft-details__checks--line">
             Business Metrics Check
             <span id="tooltip-metrics" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">This check evaluates key business listing metrics, including review velocity, rating distribution, and customer engagement trends, to ensure the business maintains organic and credible review activity.</div>
+            <div class="tooltip">Evaluates review trends, rating distribution, and engagement patterns to verify that the business maintains credible, organic reviews.</div>
           </div>
           <div class="aft-details__checks--line">
             Consumer Identification
             <span id="tooltip-consumer" class="aft-details__checks--info"><img src="info.svg" /></span>
-            <div class="tooltip">This check assesses whether reviews are from real customers by analyzing behavioral patterns, past contributions, and contextual relevance, preventing misleading or inauthentic testimonials.</div>
+            <div class="tooltip">Analyzes reviewer behavior and history to confirm that reviews come from real customers, preventing misleading or fake testimonials.</div>
           </div>
         </div>
         <div class="aft-details__reviews">
@@ -376,10 +376,6 @@
       // endpoint should probably be set via dashboard, esp. if this ends up wrapped in iframe
       const widgetEndpoint = 'https://transparency-badge.john-d2c.workers.dev/widget/';
       const cid = '10343294001459065910';
-      const options = {
-        method: 'GET',
-        mode: 'cors',
-      };
 
       const bizName = document.getElementById('partner-name');
       const bizAddress = document.getElementById('partner-address');
@@ -391,10 +387,10 @@
         .catch(err => console.error(err));
       const data = response && response.ok ? response.json() : {};
 
-      bizName.textContent = data.name || 'Business Name';
+      bizName.textContent = data.name || 'First Street Plumbing';
       bizAddress.textContent = data.address || '497 Evergreen Rd. Roseville, CA 95673';
       avgRating.textContent = data.avg_rating || '4.5';
-      reviewCount.textContent = data.review_count || '0';
+      reviewCount.textContent = data.review_count || '1037';
       lastScan.textContent = data.last_crawled_at 
         ? `Last Scanned ${data.last_crawled_at}` 
         : 'Last Scanned: Never';
