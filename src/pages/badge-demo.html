@@ -383,7 +383,7 @@
       const reviewCount = document.getElementById('review-count');
       const lastScan = document.getElementById('last-scan');
 
-      const response = await fetch(`${widgetEndpoint}${cid}`, options)
+      const response = await fetch(`${widgetEndpoint}${cid}`)
         .catch(err => console.error(err));
       const data = response && response.ok ? response.json() : {};
 
