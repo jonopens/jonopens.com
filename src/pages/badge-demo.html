@@ -483,6 +483,11 @@
 
     infoIcons.forEach((infoIcon, index) => {
       infoIcon.addEventListener('click', () => {
+        infoIcons.forEach((icon, idx) => {
+          if (idx !== index) {
+            tooltips[idx].classList.remove('show');
+          }
+        });
         const tooltip = tooltips[index];
         tooltip.classList.toggle('show');
       });
