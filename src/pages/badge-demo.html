@@ -59,11 +59,11 @@
       }
 
       .aft-badge__text--scantime {
-        font-size: 9px;
+        font-size: 11px;
       }
 
       .aft-badge__text--click {
-        font-size: 11px;
+        font-size: 10px;
         color: #A6AAC3;
         text-decoration: underline;
       }
@@ -214,11 +214,11 @@
           margin: 1px 0;
         }
         .aft-badge__text--scantime {
-          font-size: 8px;
+          font-size: 9px;
         }
 
         .aft-badge__text--click {
-          font-size: 10px;
+          font-size: 8px;
         }
 
         .aft-badge__text--verify {
@@ -321,7 +321,7 @@
           <div class="aft-badge__summary">
             <div class="aft-badge__text aft-badge__text--verify">Reviews Verified</div>
             <div class="aft-badge__text aft-badge__text--scantime" id="last-scan"></div>
-            <div class="aft-badge__text aft-badge__text--click">CLICK FOR PROFILE</div>
+            <div class="aft-badge__text aft-badge__text--click" id="click-handle">CLICK FOR PROFILE</div>
             <div class="aft-badge__text aft-badge__text--powered">
               Powered by: <img class="aft-badge__img-inline" src="the-transparency-co-white-text.svg" />
             </div>
@@ -430,14 +430,16 @@
     const badge = document.getElementById('badge');
     const details = document.getElementById('details');
     const caret = document.getElementById('caret');
+    const clickBadgeText = document.getElementById('click-handle');
     const checksList = document.querySelectorAll('.aft-details__checks--line');
     
     const BASE_DELAY = 0.4;
 
-    let isDetailSectionOpen = false;
+    let isDetailSectionClosed = false;
 
     const handleClick = () => {
-      if (isDetailSectionOpen) {
+      if (isDetailSectionClosed) {
+        clickBadgeText.textContent = 'CLICK FOR PROFILE';
         details.style.transitionDelay = '0s';
         details.style.transitionDuration = '0.2s';
 
@@ -450,6 +452,7 @@
           check.classList.remove('fades-in');
         });
       } else {
+        clickBadgeText.textContent = 'CLICK TO CLOSE';
         badge.classList.toggle('move-up');
         details.classList.toggle('ease-in');
         details.style.removeProperty('transition-delay');
