@@ -1,0 +1,68 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getWriting } from "@/utils/collections";
+
+const allWriting = await getWriting();
+const totalWriting = allWriting.length;
+---
+
+<BaseLayout title="Writing" description="Poetry, essays, and creative writing">
+  <div class="py-8">
+    <div class="mb-12">
+      <h1 class="text-4xl med:text-5xl font-bold mb-4 text-text-light dark:text-text-dark">
+        Writing
+      </h1>
+      <p class="text-lg text-text-secondary-light dark:text-text-secondary-dark">
+        {totalWriting} {totalWriting === 1 ? 'piece' : 'pieces'} of poetry, essays, and creative writing
+      </p>
+    </div>
+
+    {allWriting.length === 0 ? (
+      <div class="text-center py-12">
+        <p class="text-lg text-text-secondary-light dark:text-text-secondary-dark">
+          No writing yet. Check back soon!
+        </p>
+      </div>
+    ) : (
+      <div class="grid gap-8">
+        {allWriting.map((piece) => (
+          <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-primary transition-all duration-200 hover:shadow-lg">
+            <a href={`/writing/${piece.slug}`} class="block group">
+              {piece.data.featured && (
+                <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold bg-accent-secondary text-bg-dark rounded-full">
+                  Featured
+                </span>
+              )}
+              <div class="flex items-center gap-3 mb-3">
+                <h2 class="text-2xl med:text-3xl font-bold text-text-light dark:text-text-dark group-hover:text-accent-primary transition-colors">
+                  {piece.data.title}
+                </h2>
+                <span class="px-2 py-1 bg-accent-primary/10 text-accent-primary rounded text-xs font-medium">
+                  {piece.data.type}
+                </span>
+              </div>
+              <p class="text-text-secondary-light dark:text-text-secondary-dark mb-4 leading-relaxed italic">
+                {piece.data.description}
+              </p>
+              <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark flex-wrap">
+                <time datetime={piece.data.pubDatetime.toISOString()}>
+                  {piece.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {piece.data.tags && piece.data.tags.length > 0 && (
+                  <div class="flex gap-2 flex-wrap">
+                    {piece.data.tags.map((tag) => (
+                      <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
+

@@ -5,7 +5,7 @@ export type Site = {
   title: string;
   siteTitle: string;
   lightAndDarkMode: boolean;
-  postPerPage: number;
+  postsPerPage: number;
   ogImage?: string;
 };
 
@@ -21,23 +21,18 @@ export type SocialIcons = {
 };
 
 export type SocialMedia =
-  | 'Github'
-  | 'Facebook'
-  | 'Instagram'
-  | 'LinkedIn'
-  | 'Mail'
-  | 'Twitter'
-  | 'Twitch'
-  | 'YouTube'
-  | 'WhatsApp'
-  | 'Snapchat'
-  | 'Pinterest'
-  | 'TikTok'
-  | 'CodePen'
-  | 'Discord'
-  | 'GitLab'
-  | 'Reddit'
-  | 'Skype'
-  | 'Steam'
-  | 'Telegram'
-  | 'Mastodon';
+  | "Github"
+  | "LinkedIn"
+  | "Mail"
+  | "Twitter"
+  | "Mastodon"
+  | "Discord"
+  | "Reddit";
+
+export type CollectionEntry = {
+  id: string;
+  slug: string;
+  body: string;
+  collection: string;
+  data: any;
+};

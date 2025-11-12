@@ -1,0 +1,70 @@
+---
+import ThemeToggle from "./ThemeToggle";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "" } = Astro.props;
+
+const navItems = [
+  { label: "Posts", href: "/posts" },
+  { label: "Development", href: "/development" },
+  { label: "Writing", href: "/writing" },
+  { label: "SEO", href: "/seo" },
+  { label: "About", href: "/about" },
+];
+
+const isActive = (path: string) => {
+  if (path === "/" && currentPath === "/") return true;
+  if (path !== "/" && currentPath.startsWith(path)) return true;
+  return false;
+};
+---
+
+<!-- Responsive Navigation: bottom on mobile/sm/med, right side on lg -->
+<nav class="fixed z-50 bg-card-light dark:bg-card-dark shadow-lg
+            bottom-0 left-0 right-0 border-t border-border-light dark:border-border-dark
+            lg:top-0 lg:bottom-auto lg:left-auto lg:right-0 lg:h-screen lg:w-56 lg:border-t-0 lg:border-l">
+  <!-- Mobile/Tablet layout (bottom) -->
+  <div class="flex items-center justify-around px-4 py-3 lg:hidden">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class={`flex flex-col items-center gap-1 px-2 py-1 rounded-lg transition-all duration-200 ${
+          isActive(item.href)
+            ? "text-accent-primary font-semibold"
+            : "text-text-light dark:text-text-dark hover:text-accent-primary"
+        }`}
+      >
+        <span class="text-xs">{item.label}</span>
+      </a>
+    ))}
+    <div class="flex flex-col items-center gap-1">
+      <ThemeToggle client:load />
+    </div>
+  </div>
+
+  <!-- Desktop layout (right side) -->
+  <div class="hidden lg:flex flex-col h-full p-6">
+    <div class="flex-1 flex flex-col gap-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`px-4 py-3 rounded-lg transition-all duration-200 ${
+            isActive(item.href)
+              ? "bg-accent-primary text-white font-semibold shadow-md"
+              : "text-text-light dark:text-text-dark hover:bg-card-muted-light dark:hover:bg-card-muted-dark hover:text-accent-primary"
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    
+    <div class="pt-4 border-t border-border-light dark:border-border-dark flex justify-center">
+      <ThemeToggle client:load />
+    </div>
+  </div>
+</nav>
+

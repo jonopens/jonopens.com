@@ -1,18 +1,63 @@
 ---
-import { SITE } from "@config";
-import Posts from "@layouts/Posts.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import getPageNumbers from "@utils/getPageNumbers";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getPosts } from "@/utils/collections";
+import { SITE } from "@/config";
 
-import { getCollection } from "astro:content";
-
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-
-const totalPages = getPageNumbers(sortedPosts.length);
-
-const paginatedPosts = sortedPosts.slice(0, SITE.postPerPage);
+const allPosts = await getPosts();
+const totalPosts = allPosts.length;
 ---
 
-<Posts posts={paginatedPosts} pageNum={1} totalPages={totalPages.length} />
+<BaseLayout title="Posts" description="All blog posts about web development, SEO, and more">
+  <div class="py-8">
+    <div class="mb-12">
+      <h1 class="text-4xl med:text-5xl font-bold mb-4 text-text-light dark:text-text-dark">
+        Posts
+      </h1>
+      <p class="text-lg text-text-secondary-light dark:text-text-secondary-dark">
+        {totalPosts} {totalPosts === 1 ? 'post' : 'posts'} about web development, SEO, and more
+      </p>
+    </div>
+
+    {allPosts.length === 0 ? (
+      <div class="text-center py-12">
+        <p class="text-lg text-text-secondary-light dark:text-text-secondary-dark">
+          No posts yet. Check back soon!
+        </p>
+      </div>
+    ) : (
+      <div class="grid gap-8">
+        {allPosts.map((post) => (
+          <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-primary transition-all duration-200 hover:shadow-lg">
+            <a href={`/posts/${post.slug}`} class="block group">
+              {post.data.featured && (
+                <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold bg-accent-secondary text-bg-dark rounded-full">
+                  Featured
+                </span>
+              )}
+              <h2 class="text-2xl med:text-3xl font-bold mb-3 text-text-light dark:text-text-dark group-hover:text-accent-primary transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-text-secondary-light dark:text-text-secondary-dark mb-4 leading-relaxed">
+                {post.data.description}
+              </p>
+              <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark flex-wrap">
+                <time datetime={post.data.pubDatetime.toISOString()}>
+                  {post.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex gap-2 flex-wrap">
+                    {post.data.tags.map((tag) => (
+                      <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs hover:bg-accent-primary hover:text-white transition-colors">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

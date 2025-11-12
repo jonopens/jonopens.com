@@ -1,171 +1,135 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import slugify from "@utils/slugify";
-import { SOCIALS } from "@config";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getPosts, getDevelopmentProjects, getWriting } from "@/utils/collections";
 
-import pxart from '@assets/images/pxArt.png';
-
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-
-const socialCount = SOCIALS.filter(social => social.active).length;
+const recentPosts = (await getPosts()).slice(0, 3);
+const recentProjects = (await getDevelopmentProjects()).slice(0, 3);
+const recentWriting = (await getWriting()).slice(0, 3);
 ---
 
-<Layout>
-  <Header />
-  <main id="main-content">
-    <section id="hero">
-      <h1 class="mr-2">Hi, I'm Jon Openshaw...</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="rss feed"
-        title="RSS Feed"
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="py-12 animate-fade-in">
+    <h1 class="text-4xl med:text-5xl lg:text-6xl font-bold mb-6 text-text-light dark:text-text-dark">
+      Welcome! 👋
+    </h1>
+    <p class="text-lg med:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+      I'm a <span class="text-accent-primary font-semibold">Fullstack Software Engineer</span> and 
+      <span class="text-accent-secondary font-semibold">Experienced SEO Leader</span>. 
+      This is where I share my thoughts on code, SEO, and life.
+    </p>
+    <div class="flex gap-4 flex-wrap">
+      <a 
+        href="/posts" 
+        class="px-6 py-3 bg-accent-primary text-white rounded-lg hover:bg-accent-secondary transition-colors duration-200 font-semibold"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-          ><path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path><path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path><circle cx="6" cy="18" r="2"></circle>
-        </svg>
+        Read Posts
       </a>
+      <a 
+        href="/about" 
+        class="px-6 py-3 border-2 border-accent-primary text-accent-primary rounded-lg hover:bg-accent-primary hover:text-white transition-all duration-200 font-semibold"
+      >
+        About Me
+      </a>
+    </div>
+  </section>
 
-      <p>
-        ...an experienced full stack web developer. I still do some strategic SEO consulting on the side.
-        I've worked at CARFAX, Pager, MikMak, Walmart Global Tech/Store No. 8 (RIP) and Uptime.com.
-      </p>
-      <p>
-        <img src={pxart.src} class="pixel-art" />
-        Comfortable in React, Vue (frontend) and Node/Express, Python/Django (backend). Mongo and PostgreSQL. Experience with React Native, Nest.js and Ruby/Rails.
-      </p>
-      <p>
-        I love analytics, A/B testing and measuring performance. Recently experimenting with Elixir & Phoenix Liveview and Rust.
-      </p>
-      <p>
-        I'm currently looking for a position as a frontend-leaning fullstack developer, so please connect with me on
-        <LinkButton
-          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
-          href="https://www.linkedin.com/in/jopenshaw"
-        >
-          LinkedIn
-        </LinkButton>! I'd love to meet you.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper clear-both">
-            <div class="social-links">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data }) => (
-                <Card
-                  href={`/posts/${slugify(data)}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          <Hr />
-        </>
-      )
-    }
-
-    <section id="recent-posts">
-      <h2>Recent Posts</h2>
-      <ul>
-        {
-          sortedPosts
-            .filter(({ data }) => !data.featured)
-            .map(
-              ({ data }, index) =>
-                index < 4 && (
-                  <Card
-                    href={`/posts/${slugify(data)}`}
-                    frontmatter={data}
-                    secHeading={false}
-                  />
-                )
-            )
-        }
-      </ul>
-      <div class="all-posts-btn-wrapper">
-        <LinkButton href="/posts">
-          All Posts
-          <svg xmlns="http://www.w3.org/2000/svg"
-            ><path
-              d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-            ></path>
-          </svg>
-        </LinkButton>
+  <!-- Recent Posts -->
+  {recentPosts.length > 0 && (
+    <section class="py-12 border-t border-border-light dark:border-border-dark">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-bold text-text-light dark:text-text-dark">Recent Posts</h2>
+        <a href="/posts" class="text-accent-primary hover:text-accent-secondary transition-colors">
+          View all →
+        </a>
+      </div>
+      <div class="grid gap-6">
+        {recentPosts.map((post) => (
+          <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-primary transition-colors duration-200">
+            <a href={`/posts/${post.slug}`} class="block group">
+              <h3 class="text-2xl font-bold mb-2 text-text-light dark:text-text-dark group-hover:text-accent-primary transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-text-secondary-light dark:text-text-secondary-dark mb-3">{post.data.description}</p>
+              <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                <time datetime={post.data.pubDatetime.toISOString()}>
+                  {post.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex gap-2">
+                    {post.data.tags.slice(0, 3).map((tag) => (
+                      <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </a>
+          </article>
+        ))}
       </div>
     </section>
-  </main>
+  )}
 
-  <Footer />
-</Layout>
+  <!-- Recent Development Projects -->
+  {recentProjects.length > 0 && (
+    <section class="py-12 border-t border-border-light dark:border-border-dark">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-bold text-text-light dark:text-text-dark">Recent Development</h2>
+        <a href="/development" class="text-accent-primary hover:text-accent-secondary transition-colors">
+          View all →
+        </a>
+      </div>
+      <div class="grid gap-6">
+        {recentProjects.map((project) => (
+          <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-secondary transition-colors duration-200">
+            <a href={`/development/${project.slug}`} class="block group">
+              <h3 class="text-2xl font-bold mb-2 text-text-light dark:text-text-dark group-hover:text-accent-secondary transition-colors">
+                {project.data.title}
+              </h3>
+              <p class="text-text-secondary-light dark:text-text-secondary-dark mb-3">{project.data.description}</p>
+              <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                <time datetime={project.data.pubDatetime.toISOString()}>
+                  {project.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
 
-<style>
-  /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
-  }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
-  .pixel-art {
-    @apply float-left pr-4 pb-2 max-w-screen-sm w-60;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-  }
-
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
-  #recent-posts {
-    @apply pb-6 pt-12;
-  }
-  #featured h2,
-  #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
-  }
-  .all-posts-btn-wrapper {
-    @apply my-8 text-center;
-  }
-</style>
+  <!-- Recent Writing -->
+  {recentWriting.length > 0 && (
+    <section class="py-12 border-t border-border-light dark:border-border-dark">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-bold text-text-light dark:text-text-dark">Recent Writing</h2>
+        <a href="/writing" class="text-accent-primary hover:text-accent-secondary transition-colors">
+          View all →
+        </a>
+      </div>
+      <div class="grid gap-6">
+        {recentWriting.map((piece) => (
+          <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-primary transition-colors duration-200">
+            <a href={`/writing/${piece.slug}`} class="block group">
+              <h3 class="text-2xl font-bold mb-2 text-text-light dark:text-text-dark group-hover:text-accent-primary transition-colors">
+                {piece.data.title}
+              </h3>
+              <p class="text-text-secondary-light dark:text-text-secondary-dark mb-3">{piece.data.description}</p>
+              <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                <time datetime={piece.data.pubDatetime.toISOString()}>
+                  {piece.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs">
+                  {piece.data.type}
+                </span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
