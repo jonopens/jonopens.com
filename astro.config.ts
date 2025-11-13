@@ -4,7 +4,6 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
-import remarkCollapse from "remark-collapse";
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,12 +33,6 @@ export default defineConfig({
           heading: "Contents",
           maxDepth: 3,
           tight: true,
-        },
-      ],
-      [
-        remarkCollapse,
-        {
-          test: "Table of contents",
         },
       ],
     ],
