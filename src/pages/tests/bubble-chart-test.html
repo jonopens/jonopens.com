@@ -13,22 +13,21 @@
       <!-- div for bubble chart -->
     </div>
   </body>
-  <script type="module">
-    import d3 from 'https://cdn.jsdelivr.net/npm/d3@4.11.0/+esm'
-
+  <script src="https://cdn.jsdelivr.net/npm/d3@4.11.0/build/d3.min.js"></script>
+  <script>
     (function () {
-      let width = window.innerWidth, height = window.innerHeight;
+      const width = window.innerWidth, height = window.innerHeight;
 
-      let svg = d3.select("#chart")
+      const svg = d3.select("#chart")
         .append("svg")
         .attr("height", height)
         .attr("width", width)
         .append("g")
         .attr("transform", "translate(0, 0)")
 
-      let radiusScale = d3.scaleSqrt().domain([10, 3000]).range([10, 80])
+      const radiusScale = d3.scaleSqrt().domain([10, 3000]).range([5, 100])
 
-      let simulation = d3.forceSimulation()
+      const simulation = d3.forceSimulation()
         .force("x", d3.forceX(width / 2).strength(0.02))
         .force("y", d3.forceY(height / 2).strength(0.02))
         .force("collide", d3.forceCollide(
@@ -38,7 +37,7 @@
         )
 
       d3.queue()
-        .defer(d3.csv, "d3.csv")
+        .defer(d3.csv, "/data.csv")
         .await(ready)
 
       function ready (error, datapoints) {

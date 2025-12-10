@@ -21,8 +21,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes("/demos/") &&
-        !page.includes("/tests/") &&
-        !page.includes("/tmp/"),
+        !page.includes("/tests/"),
     }),
   ],
   markdown: {
