@@ -3,6 +3,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getDevelopmentProjects } from "@/utils/collections";
 
 const allProjects = await getDevelopmentProjects();
+const completeProjects = allProjects.filter((p) => p.data.status === "complete");
+const stillGoingProjects = allProjects.filter((p) => p.data.status === "still-going");
 const totalProjects = allProjects.length;
 ---
 
@@ -24,48 +26,110 @@ const totalProjects = allProjects.length;
         </p>
       </div>
     ) : (
-      <div class="grid gap-8 med:grid-cols-2">
-        {allProjects.map((project) => (
-          <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-secondary transition-all duration-200 hover:shadow-lg">
-            <a href={`/development/${project.slug}`} class="block group">
-              {project.data.featured && (
-                <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold bg-accent-secondary text-bg-dark rounded-full">
-                  Featured
-                </span>
-              )}
-              <h2 class="text-2xl font-bold mb-3 text-text-light dark:text-text-dark group-hover:text-accent-secondary transition-colors">
-                {project.data.title}
-              </h2>
-              <p class="text-text-secondary-light dark:text-text-secondary-dark mb-4 leading-relaxed">
-                {project.data.description}
-              </p>
-              <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark flex-wrap">
-                <time datetime={project.data.pubDatetime.toISOString()}>
-                  {project.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </time>
-                {project.data.tags && project.data.tags.length > 0 && (
-                  <div class="flex gap-2 flex-wrap">
-                    {project.data.tags.map((tag) => (
-                      <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs">
-                        #{tag}
+      <div class="space-y-16">
+        {/* Still Going Section */}
+        {stillGoingProjects.length > 0 && (
+          <section>
+            <h2 class="text-2xl font-bold mb-6 text-text-light dark:text-text-dark border-b border-border-light dark:border-border-dark pb-2">
+              Still Going
+            </h2>
+            <div class="grid gap-8 med:grid-cols-2">
+              {stillGoingProjects.map((project) => (
+                <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-secondary transition-all duration-200 hover:shadow-lg">
+                  <a href={`/development/${project.slug}`} class="block group">
+                    {project.data.featured && (
+                      <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold bg-accent-secondary text-bg-dark rounded-full">
+                        Featured
                       </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {(project.data.githubUrl || project.data.demoUrl) && (
-                <div class="flex gap-3 mt-4">
-                  {project.data.githubUrl && (
-                    <span class="text-xs text-accent-primary">→ GitHub</span>
-                  )}
-                  {project.data.demoUrl && (
-                    <span class="text-xs text-accent-secondary">→ Demo</span>
-                  )}
-                </div>
-              )}
-            </a>
-          </article>
-        ))}
+                    )}
+                    <h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark group-hover:text-accent-secondary transition-colors">
+                      {project.data.title}
+                    </h3>
+                    <p class="text-text-secondary-light dark:text-text-secondary-dark mb-4 leading-relaxed">
+                      {project.data.description}
+                    </p>
+                    <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark flex-wrap">
+                      <time datetime={project.data.pubDatetime.toISOString()}>
+                        {project.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                      {project.data.tags && project.data.tags.length > 0 && (
+                        <div class="flex gap-2 flex-wrap">
+                          {project.data.tags.map((tag) => (
+                            <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {(project.data.githubUrl || project.data.demoUrl) && (
+                      <div class="flex gap-3 mt-4">
+                        {project.data.githubUrl && (
+                          <span class="text-xs text-accent-primary">→ GitHub</span>
+                        )}
+                        {project.data.demoUrl && (
+                          <span class="text-xs text-accent-secondary">→ Demo</span>
+                        )}
+                      </div>
+                    )}
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Complete Section */}
+        {completeProjects.length > 0 && (
+          <section>
+            <h2 class="text-2xl font-bold mb-6 text-text-light dark:text-text-dark border-b border-border-light dark:border-border-dark pb-2">
+              Complete
+            </h2>
+            <div class="grid gap-8 med:grid-cols-2">
+              {completeProjects.map((project) => (
+                <article class="p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark hover:border-accent-secondary transition-all duration-200 hover:shadow-lg">
+                  <a href={`/development/${project.slug}`} class="block group">
+                    {project.data.featured && (
+                      <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold bg-accent-secondary text-bg-dark rounded-full">
+                        Featured
+                      </span>
+                    )}
+                    <h3 class="text-xl font-bold mb-2 text-text-light dark:text-text-dark group-hover:text-accent-secondary transition-colors">
+                      {project.data.title}
+                    </h3>
+                    <p class="text-text-secondary-light dark:text-text-secondary-dark mb-4 leading-relaxed">
+                      {project.data.description}
+                    </p>
+                    <div class="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark flex-wrap">
+                      <time datetime={project.data.pubDatetime.toISOString()}>
+                        {project.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                      {project.data.tags && project.data.tags.length > 0 && (
+                        <div class="flex gap-2 flex-wrap">
+                          {project.data.tags.map((tag) => (
+                            <span class="px-2 py-1 bg-card-muted-light dark:bg-card-muted-dark rounded text-xs">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {(project.data.githubUrl || project.data.demoUrl) && (
+                      <div class="flex gap-3 mt-4">
+                        {project.data.githubUrl && (
+                          <span class="text-xs text-accent-primary">→ GitHub</span>
+                        )}
+                        {project.data.demoUrl && (
+                          <span class="text-xs text-accent-secondary">→ Demo</span>
+                        )}
+                      </div>
+                    )}
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     )}
   </div>

@@ -35,6 +35,7 @@ const development = defineCollection({
       author: z.string().default(SITE.author),
       draft: z.boolean().optional(),
       featured: z.boolean().optional(),
+      status: z.enum(["complete", "still-going"]).default("still-going"),
       tags: z.array(z.string()).default(["code"]),
       projectUrl: z.string().url().optional(),
       githubUrl: z.string().url().optional(),
