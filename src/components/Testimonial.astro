@@ -4,10 +4,12 @@ interface Props {
   position: string;
   linkedInUrl: string;
   date: string;
+  preview: string;
   anchorText?: string;
 }
 
-const { name, position, linkedInUrl, anchorText, date } = Astro.props;
+const { name, position, linkedInUrl, date, preview, anchorText } = Astro.props;
+const id = `testimonial-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <section class="mb-8 pb-8 border-b border-border-light dark:border-border-dark last:border-0 last:mb-0 last:pb-0">
@@ -32,7 +34,47 @@ const { name, position, linkedInUrl, anchorText, date } = Astro.props;
       {anchorText || "LinkedIn"} →
     </a>
   </header>
-  <div class="prose prose-lg dark:prose-invert max-w-none">
+
+  <div
+    class="text-text-secondary-light dark:text-text-secondary-dark mb-3 text-sm italic"
+    data-preview={id}
+  >
+    {preview}
+  </div>
+
+  <div
+    class="prose prose-lg dark:prose-invert max-w-none mb-3 hidden"
+    data-content={id}
+  >
     <slot />
   </div>
+
+  <button
+    class="text-accent-primary hover:text-accent-secondary transition-colors text-sm font-medium"
+    data-toggle={id}
+  >
+    Click to read more →
+  </button>
 </section>
+
+<script define:vars={{ id }}>
+  const preview = document.querySelector(`[data-preview="${id}"]`);
+  const content = document.querySelector(`[data-content="${id}"]`);
+  const toggle = document.querySelector(`[data-toggle="${id}"]`);
+
+  if (toggle && preview && content) {
+    toggle.addEventListener("click", () => {
+      const isOpen = !content.classList.contains("hidden");
+      
+      if (isOpen) {
+        content.classList.add("hidden");
+        preview.classList.remove("hidden");
+        toggle.textContent = "Click to read more →";
+      } else {
+        content.classList.remove("hidden");
+        preview.classList.add("hidden");
+        toggle.textContent = "Show less";
+      }
+    });
+  }
+</script>
